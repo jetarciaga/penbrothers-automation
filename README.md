@@ -41,7 +41,15 @@ This project demonstrates how to perform web automation using selenium, pandas t
    pip install -r requirements.txt
    ```
 
+## Usage
+
+1. Run the automation script:
+   ```bash
+   python main.py
+   ```
+
 ## License
 
 Copyright © 2023 [Jethro Arciaga](https://www.linkedin.com/in/jethroarciaga/).
+
 This project [MIT](https://github.com/jetarciaga/penbrothers-automation/blob/main/LICENSE) licensed
