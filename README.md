@@ -69,6 +69,10 @@ This project demonstrates how to perform web automation using selenium, pandas t
    mkdir assets, logs, outputs
    ```
 
+3. Create environment variables
+   - change .env.examples to .env
+   - fill in the environment variables
+
 ## Usage
 
 **Note:** Run the script inside the working directory (/app)
