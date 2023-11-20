@@ -5,19 +5,21 @@ from zipfile import ZipFile
 
 DIRECTORY = Path(__file__).parents[2].joinpath('assets')
 
-
-logger = logging.getLogger('zip_extract_handler.log')
+# start set logger block
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 formatter = logging.Formatter(
-    "[%(asctime)s %(levelname)s %(name)s:%(lineno)d] %(message)s"
+    '[%(asctime)s %(levelname)s %(name)s:%(lineno)d]: %(message)s'
 )
 
-file_handler = logging.FileHandler(DIRECTORY.parent.joinpath('logs')
-                                   .joinpath('zip_handler.log'))
+file_handler = logging.FileHandler(
+    Path(__file__).parents[1].joinpath('logs').joinpath('output.log')
+)
 file_handler.setFormatter(formatter)
 
 logger.addHandler(file_handler)
+# end logger block
 
 def extract_zip(file_path: Path):
     try:
@@ -31,6 +33,6 @@ def extract_zip(file_path: Path):
         os.remove(file_to_extract)
         return file_path
 
-    except Exception:
-        logger.exception('Something went wrong...')
+    except Exception as e:
+        logger.exception(f'Something went wrong: {e}')
 

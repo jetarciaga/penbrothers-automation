@@ -1,5 +1,4 @@
 import os
-import time
 from pathlib import Path
 import logging
 
@@ -7,24 +6,25 @@ from selenium import  webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service as FFService
 
-DIRECTORY = Path(__file__).parents[2]
+DIRECTORY = Path(__file__).parents[1]
 DRIVER_DIRECTORY = DIRECTORY.joinpath('drivers')
 FIREFOX_DRIVER = DRIVER_DIRECTORY.joinpath('geckodriver.exe')
 
+# start set logger block
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 formatter = logging.Formatter(
-    "[%(asctime)s %(levelname)s %(name)s:%(lineno)d] %(message)s"
+    '[%(asctime)s %(levelname)s %(name)s:%(lineno)d]: %(message)s'
 )
-file_handler = logging.FileHandler(DIRECTORY.joinpath('logs').joinpath('driver.log'))
+
+file_handler = logging.FileHandler(
+    Path(__file__).parents[1].joinpath('logs').joinpath('output.log')
+)
 file_handler.setFormatter(formatter)
 
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(formatter)
-
 logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
+# end logger block
 
 
 class WebDriverContextManager:

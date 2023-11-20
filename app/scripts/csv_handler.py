@@ -1,12 +1,29 @@
 import os
 import csv
 from pathlib import Path
+import logging
 
 import pandas as pd
 
+# start set logger block
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+formatter = logging.Formatter(
+    '[%(asctime)s %(levelname)s %(name)s:%(lineno)d]: %(message)s'
+)
+
+file_handler = logging.FileHandler(
+    Path(__file__).parents[1].joinpath('logs').joinpath('output.log')
+)
+file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
+# end logger block
 
 def add_quotation_marks(directory: Path, export_file: Path):
     """Enclosed each item in csv file with double quotation mark"""
+    logger.info('Adding double quotes...')
 
     read_file = directory.joinpath([
         filename  for filename in os.listdir(directory) \
@@ -21,9 +38,13 @@ def add_quotation_marks(directory: Path, export_file: Path):
 
         for row in csv_read:
             csv_writer.writerow(row)
+    logger.info('Removing old unquoted files...')
+    os.remove(read_file)
+    return export_file
 
 def merge_csv(directory: Path) -> pd.DataFrame:
     """Merge csvs into one dataframe"""
+    logger.info('Merging CSV files...')
     merged_df = pd.DataFrame()
 
     # loop through csv files in directory
@@ -36,6 +57,7 @@ def merge_csv(directory: Path) -> pd.DataFrame:
             merged_df = pd.concat([merged_df, current_df], ignore_index=True)
 
     # remove source files
+    logger.info('Removing source files...')
     for filename in os.listdir(directory):
         if filename.endswith('.csv'):
             file_path = directory.joinpath(filename)
@@ -45,6 +67,7 @@ def merge_csv(directory: Path) -> pd.DataFrame:
 
 def generate_csv_from_dataframe(dataframe: pd.DataFrame, directory: Path):
     """Generate csv file from dataframe"""
+    logger.info('Generating csv files...')
     dataframe.to_csv(directory)
 
 
