@@ -46,7 +46,7 @@ This project demonstrates how to perform web automation using selenium, pandas t
    Windows:
 
    ```bash
-   .\\.venv\\Scripts\\activate
+   .\.venv\Scripts\activate
    ```
 
 4. Install dependencies:
@@ -57,17 +57,23 @@ This project demonstrates how to perform web automation using selenium, pandas t
 
 ## Configuration
 
-1. Create neccessary folders (e.g., assets, logs, outputs) inside the app folder
-
-## Usage
-
-1. Change directory:
+1. Change directory to app folder
 
    ```bash
    cd app
    ```
 
-2. Run the automation script:
+2. Create neccessary folders (e.g., assets, logs, outputs) inside the app folder
+
+   ```bash
+   mkdir assets, logs, outputs
+   ```
+
+## Usage
+
+**Note:** Run the script inside the working directory (/app)
+
+1. Run the automation script:
 
    ```bash
    python main.py
