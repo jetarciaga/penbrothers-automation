@@ -35,15 +35,40 @@ This project demonstrates how to perform web automation using selenium, pandas t
    cd penbrothers-automation
    ```
 
-2. Install dependencies:
+2. Create virtual environment:
+
+   ```bash
+   python -m venv .venv
+   ```
+
+3. Activate virtual environment:
+
+   Windows:
+
+   ```bash
+   .\\.venv\\Scripts\\activate
+   ```
+
+4. Install dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
+## Configuration
+
+1. Create neccessary folders (e.g., assets, logs, outputs) inside the app folder
+
 ## Usage
 
-1. Run the automation script:
+1. Change directory:
+
+   ```bash
+   cd app
+   ```
+
+2. Run the automation script:
+
    ```bash
    python main.py
    ```
